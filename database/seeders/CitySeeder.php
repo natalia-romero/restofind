@@ -1,14 +1,13 @@
 <?php
 
 namespace Database\Seeders;
-
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
-class EstablishmentSeeder extends Seeder
+class CitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,19 +19,19 @@ class EstablishmentSeeder extends Seeder
         DB::table('cities')->upsert([
             [
                 'id' => 1,
-                'name' => 'RestoBar'
+                'name' => 'Santiago'
             ],
             [
                 'id' => 2,
-                'name' => 'Buffet'
+                'name' => 'La Serena'
             ],
             [
                 'id' => 3,
-                'name' => 'Pub'
+                'name' => 'Valdivia'
             ],
             [
                 'id' => 4,
-                'name' => 'Autor'
+                'name' => 'Valparaíso'
             ],
         ],['id'],['name']);
     }
