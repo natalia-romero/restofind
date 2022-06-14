@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRangeRequest;
-use App\Http\Requests\UpdateRangeRequest;
-use App\Models\Range;
+use App\Http\Requests\StoreCityRequest;
+use App\Http\Requests\UpdateCityRequest;
+use App\Models\City;
 
-class RangeController extends Controller
+class CityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class RangeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreRangeRequest  $request
+     * @param  \App\Http\Requests\StoreCityRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRangeRequest $request)
+    public function store(StoreCityRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class RangeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Range  $range
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function show(Range $range)
+    public function show(City $city)
     {
         //
     }
@@ -53,10 +53,10 @@ class RangeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Range  $range
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function edit(Range $range)
+    public function edit(City $city)
     {
         //
     }
@@ -64,11 +64,11 @@ class RangeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateRangeRequest  $request
-     * @param  \App\Models\Range  $range
+     * @param  \App\Http\Requests\UpdateCityRequest  $request
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRangeRequest $request, Range $range)
+    public function update(UpdateCityRequest $request, City $city)
     {
         //
     }
@@ -76,10 +76,10 @@ class RangeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Range  $range
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Range $range)
+    public function destroy(City $city)
     {
         //
     }
