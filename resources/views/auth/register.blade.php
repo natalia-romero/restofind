@@ -30,7 +30,9 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                        placeholder="{{ __('Nombre') }}" type="text" name="name"
+                                        value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -43,7 +45,9 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email') }}" required>
+                                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                        placeholder="{{ __('Email') }}" type="email" name="email"
+                                        value="{{ old('email') }}" required>
                                 </div>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -56,7 +60,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Contraseña') }}" type="password" name="password" required>
+                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                        placeholder="{{ __('Contraseña') }}" type="password" name="password" required>
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -69,29 +74,36 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="{{ __('Confirme contraseña') }}" type="password" name="password_confirmation" required>
+                                    <input class="form-control" placeholder="{{ __('Confirme contraseña') }}"
+                                        type="password" name="password_confirmation" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group input-group-alternative">
-                                  <textarea class="form-control" placeholder="Una descripción breve de ti"></textarea>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                    </div>
+                                    <textarea class="form-control" placeholder="Una descripción breve de ti"></textarea>
                                 </div>
                             </div>
-                            <div class="text-muted font-italic">
-                                <small>{{ __('password strength') }}: <span class="text-success font-weight-700">{{ __('strong') }}strong</span></small>
-                            </div>
-                            <div class="row my-4">
-                                <div class="col-12">
-                                    <div class="custom-control custom-control-alternative custom-checkbox">
-                                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                                        <label class="custom-control-label" for="customCheckRegister">
-                                            <span class="text-muted">{{ __('I agree with the') }} <a href="#!">{{ __('Privacy Policy') }}</a></span>
-                                        </label>
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                                     </div>
+                                    <select class="form-control" id="exampleFormControlSelect1">
+
+                                        <option value="" selected disabled>Selecciona la ciudad donde vives</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary mt-4">{{ __('Create account') }}</button>
+                                <button type="submit" class="btn btn-primary mt-4">{{ __('Crear Cuenta') }}</button>
                             </div>
                         </form>
                     </div>
