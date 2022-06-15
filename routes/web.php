@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RestaurantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,21 +13,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
-
+Route::middleware('guest')->group(function () {
+	Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
+	Route::resource('restaurants', RestaurantController::class);
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
-
 Route::group(['middleware' => 'auth'], function () {
+	Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);

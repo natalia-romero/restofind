@@ -1,7 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Environment;
+use App\Models\Establishment;
+use App\Models\Foods;
+use App\Models\Price;
+use App\Models\City;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
 use App\Models\Restaurant;
@@ -13,9 +18,31 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $restaurants = Restaurant::all();
+        if($request->filled('price')){
+            $restaurants = $restaurants->where('price_id',$request->price);
+        }
+        if($request->filled('establishment')){
+            $restaurants = $restaurants->where('establishment_id',$request->establishment);
+        }
+        if($request->filled('food')){
+            $restaurants = $restaurants->where('food_id',$request->food);
+        }
+        if($request->filled('environments')){
+            $restaurants = $restaurants->where('environments_id',$request->environments);
+        }
+        if($request->filled('city')){
+            $restaurants = $restaurants->where('city_id',$request->city);
+        }
+        $establishments = Establishment::all();
+        $environments = Environment::all();
+        $foods = Foods::all();
+        $prices = Price::all();
+        $cities = City::all();
+        //dd($restaurants);
+        return view('restaurants.index',['restaurants' => $restaurants,'establishments' => $establishments, 'environments' => $environments, 'foods' => $foods, 'prices' => $prices, 'cities' => $cities]);
     }
 
     /**

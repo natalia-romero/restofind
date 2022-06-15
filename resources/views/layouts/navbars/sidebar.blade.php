@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="{{ route('/') }}">
+        <a class="navbar-brand pt-0" href="{{ route('welcome') }}">
             <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
         </a>
         <!-- User -->
@@ -102,7 +102,7 @@
             <hr class="my-3">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('/') }}">
+                    <a class="nav-link" href="{{ route('welcome') }}">
                         <i class="fas fa-search text-primary"></i> {{ __('Buscar Restaurant') }}
                     </a>
                 </li>
