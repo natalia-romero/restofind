@@ -17,7 +17,7 @@ class EnvironmentSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('environment')->upsert([
+        DB::table('environments')->upsert([
             [
                 'id' => 1,
                 'name' => 'Familiar'

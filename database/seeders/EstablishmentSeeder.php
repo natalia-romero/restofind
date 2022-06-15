@@ -17,7 +17,7 @@ class EstablishmentSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cities')->upsert([
+        DB::table('establishments')->upsert([
             [
                 'id' => 1,
                 'name' => 'RestoBar'
