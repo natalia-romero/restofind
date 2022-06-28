@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEstablishmentRequest;
 use App\Http\Requests\UpdateEstablishmentRequest;
 use App\Models\Establishment;
+use Flasher\Toastr\Prime\ToastrFactory;
+use Illuminate\Support\Facades\Validator;
 
 class EstablishmentController extends Controller
 {
@@ -25,7 +27,7 @@ class EstablishmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('establishments.create');
     }
 
     /**
@@ -34,9 +36,17 @@ class EstablishmentController extends Controller
      * @param  \App\Http\Requests\StoreEstablishmentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEstablishmentRequest $request)
+    public function store(StoreEstablishmentRequest $request, ToastrFactory $flasher)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $validator->validate();
+        Establishment::create([
+            'name' => $request->name
+        ]);
+        $flasher->addSuccess('¡El tipo de local se ha guardado con éxito!');
+        return redirect(route('home.index'));
     }
 
     /**
@@ -58,7 +68,7 @@ class EstablishmentController extends Controller
      */
     public function edit(Establishment $establishment)
     {
-        //
+        return view('establishments.edit', ['establishment' => $establishment]);
     }
 
     /**
@@ -68,9 +78,16 @@ class EstablishmentController extends Controller
      * @param  \App\Models\Establishment  $establishment
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEstablishmentRequest $request, Establishment $establishment)
+    public function update(UpdateEstablishmentRequest $request, Establishment $establishment, ToastrFactory $flasher)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $validator->validate();
+        $establishment->fill($request->toArray());
+        $establishment->save();
+        $flasher->addSuccess('¡El tipo de local se ha editado con éxito!');
+        return redirect(route('home.index'));
     }
 
     /**
@@ -79,8 +96,10 @@ class EstablishmentController extends Controller
      * @param  \App\Models\Establishment  $establishment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Establishment $establishment)
+    public function destroy(Establishment $establishment, ToastrFactory $flasher)
     {
-        //
+        $establishment->delete();
+        $flasher->addSuccess('¡El tipo de local se ha eliminado con éxito!');
+        return redirect(route('home.index'));
     }
 }

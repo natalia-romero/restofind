@@ -1,4 +1,4 @@
-<nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+<nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark bg-gradient-primary">
     <div class="container px-4">
         <a class="navbar-brand" href="{{ route('welcome') }}">
             <img src="{{ asset('argon') }}/img/brand/white.png" />
@@ -12,7 +12,7 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="{{ route('home') }}">
+                        <a href="{{ route('home.index') }}">
                             <img src="{{ asset('argon') }}/img/brand/blue.png">
                         </a>
                     </div>

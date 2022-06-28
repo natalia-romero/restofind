@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEnvironmentRequest;
 use App\Http\Requests\UpdateEnvironmentRequest;
 use App\Models\Environment;
+use Flasher\Toastr\Prime\ToastrFactory;
+use Illuminate\Support\Facades\Validator;
 
 class EnvironmentController extends Controller
 {
@@ -25,7 +27,7 @@ class EnvironmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('environments.create');
     }
 
     /**
@@ -34,9 +36,17 @@ class EnvironmentController extends Controller
      * @param  \App\Http\Requests\StoreEnvironmentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEnvironmentRequest $request)
+    public function store(StoreEnvironmentRequest $request, ToastrFactory $flasher)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $validator->validate();
+        Environment::create([
+            'name' => $request->name
+        ]);
+        $flasher->addSuccess('¡El tipo de ambiente se ha guardado con éxito!');
+        return redirect(route('home.index'));
     }
 
     /**
@@ -58,7 +68,7 @@ class EnvironmentController extends Controller
      */
     public function edit(Environment $environment)
     {
-        //
+        return view('environments.edit', ['environment' => $environment]);
     }
 
     /**
@@ -68,9 +78,16 @@ class EnvironmentController extends Controller
      * @param  \App\Models\Environment  $environment
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEnvironmentRequest $request, Environment $environment)
+    public function update(UpdateEnvironmentRequest $request, Environment $environment, ToastrFactory $flasher)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $validator->validate();
+        $environment->fill($request->toArray());
+        $environment->save();
+        $flasher->addSuccess('¡El tipo de ambiente se ha editado con éxito!');
+        return redirect(route('home.index'));
     }
 
     /**
@@ -79,8 +96,10 @@ class EnvironmentController extends Controller
      * @param  \App\Models\Environment  $environment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Environment $environment)
+    public function destroy(Environment $environment, ToastrFactory $flasher)
     {
-        //
+        $environment->delete();
+        $flasher->addSuccess('¡El tipo de ambiente se ha eliminado con éxito!');
+        return redirect(route('home.index'));
     }
 }

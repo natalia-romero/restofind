@@ -1,7 +1,8 @@
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
+            aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
@@ -11,10 +12,11 @@
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
-                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                        <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
+                            <img alt="Image placeholder" src="{{ url('img/profile.png') }}">
                         </span>
                     </div>
                 </a>
@@ -24,22 +26,15 @@
                     </div>
                     <a href="{{ route('profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
-                        <span>{{ __('My profile') }}</span>
+                        <span>{{ __('Mi perfil') }}</span>
                     </a>
                     <a href="#" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
-                        <span>{{ __('Settings') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-calendar-grid-58"></i>
-                        <span>{{ __('Activity') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-support-16"></i>
-                        <span>{{ __('Support') }}</span>
+                        <span>{{ __('Configuración') }}</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
+                    <a href="{{ route('logout') }}" class="dropdown-item"
+                        onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                         <i class="ni ni-user-run"></i>
                         <span>{{ __('Logout') }}</span>
@@ -53,12 +48,14 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="{{ route('home') }}">
+                        <a href="{{ route('home.index') }}">
                             <img src="{{ asset('argon') }}/img/brand/blue.png">
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                        <button type="button" class="navbar-toggler" data-toggle="collapse"
+                            data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false"
+                            aria-label="Toggle sidenav">
                             <span></span>
                             <span></span>
                         </button>
@@ -66,17 +63,20 @@
                 </div>
             </div>
             <!-- Form -->
-           
+
             <!-- Navigation -->
             <h6 class="navbar-heading text-muted">Opciones</h6>
             <ul class="navbar-nav">
+                @if (Auth::user()->id == 7)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home.index') }}">
+                            <i class="ni ni-tv-2 text-primary"></i> {{ __('Panel administración') }}
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Panel administración') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                    <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="navbar-examples">
                         <i class="far fa-user text-primary"></i> {{ __('Usuario') }}
                     </a>
 
@@ -87,16 +87,11 @@
                                     {{ __('Ver mi perfil') }}
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('Ver mis comentarios') }}
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </li>
 
-              
+
             </ul>
             <!-- Divider -->
             <hr class="my-3">
@@ -106,12 +101,12 @@
                         <i class="fas fa-search text-primary"></i> {{ __('Buscar Restaurant') }}
                     </a>
                 </li>
-              
+
             </ul>
             <!-- Heading -->
             {{-- <h6 class="navbar-heading text-muted">Documentation</h6> --}}
             <!-- Navigation -->
-           
+
         </div>
     </div>
 </nav>

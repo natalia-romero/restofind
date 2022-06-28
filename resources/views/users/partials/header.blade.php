@@ -1,6 +1,6 @@
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="background-size: cover; background-position: center top;">
     <!-- Mask -->
-    <span class="mask bg-primary"></span>
+    <span class="mask bg-gradient-primary"></span>
     <!-- Header container -->
     <div class="container-fluid d-flex align-items-center">
         <div class="row">

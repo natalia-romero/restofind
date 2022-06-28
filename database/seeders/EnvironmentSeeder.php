@@ -34,6 +34,7 @@ class EnvironmentSeeder extends Seeder
                 'id' => 4,
                 'name' => 'Ejecutivo'
             ],
+            
         ],['id'],['name']);
     }
 }

@@ -1,8 +1,8 @@
-@extends('layouts.app', ['class' => 'bg-default'])
+@extends('layouts.app', ['class' => 'bg-secondary'])
 
 @section('content')
     @include('layouts.headers.guest')
-
+    @php use App\Models\City; @endphp
     <div class="container mt--8 pb-5">
         <!-- Table -->
         <div class="row justify-content-center">
@@ -83,7 +83,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
                                     </div>
-                                    <textarea class="form-control" placeholder="Una descripción breve de ti"></textarea>
+                                    <textarea class="form-control" placeholder="Una descripción breve de ti" name="description"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -91,14 +91,11 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                                     </div>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-
+                                    <select class="form-control" id="exampleFormControlSelect1" name="city_id">
                                         <option value="" selected disabled>Selecciona la ciudad donde vives</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        @foreach (City::all() as $city)
+                                            <option value="{{$city->id}}">{{$city->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Environment;
 use App\Models\Establishment;
 use App\Models\Foods;
@@ -11,7 +12,7 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-    
+
     /**
      * Show the application welcome.
      *
@@ -24,6 +25,6 @@ class WelcomeController extends Controller
         $foods = Foods::all();
         $prices = Price::all();
         $cities = City::all();
-        return view('welcome',['establishments' => $establishments, 'environments' => $environments, 'foods' => $foods, 'prices' => $prices, 'cities' => $cities]);
+        return view('welcome', ['establishments' => $establishments, 'environments' => $environments, 'foods' => $foods, 'prices' => $prices, 'cities' => $cities]);
     }
 }

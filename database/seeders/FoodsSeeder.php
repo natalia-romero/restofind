@@ -20,19 +20,27 @@ class FoodsSeeder extends Seeder
         DB::table('foods')->upsert([
             [
                 'id' => 1,
-                'name' => 'RestoBar'
+                'name' => 'China'
             ],
             [
                 'id' => 2,
-                'name' => 'Buffet'
+                'name' => 'Americana'
             ],
             [
                 'id' => 3,
-                'name' => 'Pub'
+                'name' => 'Chilena'
             ],
             [
                 'id' => 4,
-                'name' => 'Autor'
+                'name' => 'Italiana'
+            ],
+            [
+                'id' => 5,
+                'name' => 'Peruana'
+            ],
+            [
+                'id' => 6,
+                'name' => 'Internacional'
             ],
         ],['id'],['name']);
     }

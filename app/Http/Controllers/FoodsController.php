@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\HomeController;
 use App\Http\Requests\StoreFoodsRequest;
 use App\Http\Requests\UpdateFoodsRequest;
+use Flasher\Toastr\Prime\ToastrFactory;
+use Illuminate\Support\Facades\Validator;
+
+
 use App\Models\Foods;
 
 class FoodsController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +32,7 @@ class FoodsController extends Controller
      */
     public function create()
     {
-        //
+        return view('foods.create');
     }
 
     /**
@@ -34,9 +41,17 @@ class FoodsController extends Controller
      * @param  \App\Http\Requests\StoreFoodsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFoodsRequest $request)
+    public function store(StoreFoodsRequest $request, ToastrFactory $flasher)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $validator->validate();
+        Foods::create([
+            'name' => $request->name
+        ]);
+        $flasher->addSuccess('¡El tipo de comida se ha guardado con éxito!');
+        return redirect(route('home.index'));
     }
 
     /**
@@ -56,9 +71,9 @@ class FoodsController extends Controller
      * @param  \App\Models\Foods  $foods
      * @return \Illuminate\Http\Response
      */
-    public function edit(Foods $foods)
+    public function edit(Foods $food)
     {
-        //
+        return view('foods.edit', ['food' => $food]);
     }
 
     /**
@@ -68,19 +83,28 @@ class FoodsController extends Controller
      * @param  \App\Models\Foods  $foods
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFoodsRequest $request, Foods $foods)
+    public function update(UpdateFoodsRequest $request, Foods $food, ToastrFactory $flasher)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $validator->validate();
+        $food->fill($request->toArray());
+        $food->save();
+        $flasher->addSuccess('¡El tipo de comida se ha editado con éxito!');
+        return redirect(route('home.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Foods  $foods
+     * @param  \App\Models\Foods  $food
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Foods $foods)
+    public function destroy(Foods $food, ToastrFactory $flasher)
     {
-        //
+        $food->delete();
+        $flasher->addSuccess('¡El tipo de comida se ha eliminado con éxito!');
+        return redirect(route('home.index'));
     }
 }

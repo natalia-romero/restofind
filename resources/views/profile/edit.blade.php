@@ -14,15 +14,12 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="{{ asset('argon') }}/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                                    <img src="{{url('img/profile.png')}}" class="rounded-circle">
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                        <div class="d-flex justify-content-between">
-                            <a href="#" class="btn btn-sm btn-info mr-4">{{ __('Editar Perfil') }}</a>
-                        </div>
                     </div>
                     <div class="card-body pt-0 pt-md-4">
                         <div class="row">
@@ -48,7 +45,7 @@
                                 {{ auth()->user()->name }}<span class="font-weight-light">, 27</span>
                             </h3>
                             <div class="h5 font-weight-300">
-                                <i class="ni location_pin mr-2"></i>{{ __('Santiago, Chile') }}
+                                <i class="ni location_pin mr-2"></i>{{ __(Auth::user()->cities->name.', Chile') }}
                             </div>
                             <div class="h5 mt-4">
                                 <i class="ni business_briefcase-24 mr-2"></i>{{ __('Ingeniero Civil en Informática') }}
@@ -57,7 +54,7 @@
                                 <i class="ni education_hat mr-2"></i>{{ __('Universidad Diego Portales') }}
                             </div>
                             <hr class="my-4" />
-                            <p>{{ __('Me gusta mucho salir a comer. Soy muy exigente a la hora de evaluar.') }}</p>
+                            <p>{{ __(Auth::user()->description) }}</p>
                             {{-- <a href="#">{{ __('Show more') }}</a> --}}
                         </div>
                     </div>

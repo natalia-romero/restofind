@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
 use App\Models\City;
+use App\Models\Environment;
+use Flasher\Toastr\Prime\ToastrFactory;
+use Illuminate\Support\Facades\Validator;
 
 class CityController extends Controller
 {
@@ -25,7 +28,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('cities.create');
     }
 
     /**
@@ -34,9 +37,17 @@ class CityController extends Controller
      * @param  \App\Http\Requests\StoreCityRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCityRequest $request)
+    public function store(StoreCityRequest $request, ToastrFactory $flasher)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $validator->validate();
+        City::create([
+            'name' => $request->name
+        ]);
+        $flasher->addSuccess('¡La ciudad se ha guardado con éxito!');
+        return redirect(route('home.index'));
     }
 
     /**
@@ -58,7 +69,7 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        return view('cities.edit', ['city' => $city]);
     }
 
     /**
@@ -68,9 +79,16 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCityRequest $request, City $city)
+    public function update(UpdateCityRequest $request, City $city, ToastrFactory $flasher)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $validator->validate();
+        $city->fill($request->toArray());
+        $city->save();
+        $flasher->addSuccess('¡La ciudad se ha editado con éxito!');
+        return redirect(route('home.index'));
     }
 
     /**
@@ -79,8 +97,10 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy(City $city, ToastrFactory $flasher)
     {
-        //
+        $city->delete();
+        $flasher->addSuccess('¡La ciudad se ha eliminado con éxito!');
+        return redirect(route('home.index'));
     }
 }

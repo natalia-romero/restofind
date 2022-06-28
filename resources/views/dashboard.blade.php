@@ -2,7 +2,7 @@
 
 @section('content')
     @include('layouts.headers.cards')
-    
+
     <div class="container-fluid mt--7">
         <div class="row mt-5">
             <div class="col-12">
@@ -13,7 +13,7 @@
                                 <h3 class="mb-0">Restaurantes</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">Agregar</a>
+                                <a href="{{ route('restaurants.create') }}" class="btn btn-sm btn-primary">Agregar</a>
                             </div>
                         </div>
                     </div>
@@ -31,71 +31,203 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        Restaurant 1
-                                    </th>
-                                    <td>
-                                        restaurant.com
-                                    </td>
-                                    <td>
-                                        restaurant.com/menu
-                                    </td>
-                                    <td>
-                                        +56912345678
-                                    </td>
-                                    <td>
-                                        Esto es un restaurante
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        Restaurant 1
-                                    </th>
-                                    <td>
-                                        restaurant.com
-                                    </td>
-                                    <td>
-                                        restaurant.com/menu
-                                    </td>
-                                    <td>
-                                        +56912345678
-                                    </td>
-                                    <td>
-                                        Esto es un restaurante
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        Restaurant 1
-                                    </th>
-                                    <td>
-                                        restaurant.com
-                                    </td>
-                                    <td>
-                                        restaurant.com/menu
-                                    </td>
-                                    <td>
-                                        +56912345678
-                                    </td>
-                                    <td>
-                                        Esto es un restaurante
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
+                                @foreach ($restaurants as $restaurant)
+                                    <tr>
+                                        <th scope="row">
+                                            {{ $restaurant->name }}
+                                        </th>
+                                        <td>
+                                            {{ $restaurant->web }}
+                                        </td>
+                                        <td>
+                                            {{ $restaurant->menu }}
+                                        </td>
+                                        <td>
+                                            {{ $restaurant->phone_number }}
+                                        </td>
+                                        <td>
+                                            {{ Str::limit($restaurant->description, 20) }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('restaurants.edit', $restaurant) }}"
+                                                class="btn btn-sm badge-info"> <i class="far fa-edit"></i>
+                                                Editar</a>
+                                            <form action="{{ route('restaurants.destroy', $restaurant) }}" method="post"
+                                                style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm badge-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                    Borrar
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        <hr>
+                        <div class="pagination justify-content-center">
+                            {{ $restaurants->links() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xl-4">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="mb-0">Locales</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="{{ route('establishments.create') }}" class="btn btn-sm btn-primary">Agregar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($establishments as $establishment)
+                                    <tr>
+                                        <td scope="row">
+                                            {{ $establishment->name }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('establishments.edit', $establishment) }}"
+                                                class="btn btn-sm badge-info"> <i class="far fa-edit"></i>
+                                                Editar</a>
+                                            <form action="{{ route('establishments.destroy', $establishment) }}"
+                                                method="post" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm badge-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                    Borrar
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="pagination justify-content-center">
+                            {{ $establishments->links() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="mb-0">Tipo de comida</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="{{ route('foods.create') }}" class="btn btn-sm btn-primary">Agregar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($foods as $food)
+                                    <tr>
+                                        <td scope="row">
+                                            {{ $food->name }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('foods.edit', $food) }}" class="btn btn-sm badge-info"> <i
+                                                    class="far fa-edit"></i>
+                                                Editar</a>
+                                            <form action="{{ route('foods.destroy', $food) }}" method="post"
+                                                style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm badge-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                    Borrar
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="pagination justify-content-center">
+                            {{ $foods->links() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="mb-0">Ambiente</h3>
+                            </div>
+                            <div class="col text-right">
+                                <a href="{{ route('environments.create') }}" class="btn btn-sm btn-primary">Agregar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- Projects table -->
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($environments as $environment)
+                                    <tr>
+                                        <td scope="row">
+                                            {{ $environment->name }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('environments.edit', $environment) }}"
+                                                class="btn btn-sm badge-info"> <i class="far fa-edit"></i>
+                                                Editar</a>
+                                            <form action="{{ route('environments.destroy', $environment) }}"
+                                                method="post" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm badge-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                    Borrar
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="pagination justify-content-center">
+                            {{ $environments->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -107,9 +239,6 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <h3 class="mb-0">Usuarios</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">Ver todo</a>
                             </div>
                         </div>
                     </div>
@@ -125,50 +254,38 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        Usuario 1
-                                    </th>
-                                    <td>
-                                        correo@correo.com
-                                    </td>
-                                    <td>
-                                        Descripcion generica
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        Usuario 1
-                                    </th>
-                                    <td>
-                                        correo@correo.com
-                                    </td>
-                                    <td>
-                                        Descripcion generica
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        Usuario 1
-                                    </th>
-                                    <td>
-                                        correo@correo.com
-                                    </td>
-                                    <td>
-                                        Descripcion generica
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <th scope="row">
+                                            {{ $user->name }}
+                                        </th>
+                                        <td>
+                                            {{ $user->email }}
+                                        </td>
+                                        <td>
+                                            {{ Str::limit($user->description, 20) }}
+                                        </td>
+                                        <td>
+                                            @if (Auth::user()->id != $user->id)
+                                                <form action="{{ route('users.destroy', $user) }}" method="post"
+                                                    style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-sm badge-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                        Borrar
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        <hr>
+                        <div class="pagination justify-content-center">
+                            {{ $users->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -180,7 +297,7 @@
                                 <h3 class="mb-0">Ciudades</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">Agregar</a>
+                                <a href="{{ route('cities.create') }}" class="btn btn-sm btn-primary">Agregar</a>
                             </div>
                         </div>
                     </div>
@@ -194,203 +311,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row">
-                                        Santiago
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">
-                                        Valparaíso
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">
-                                        La Serena
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                        
-                                    </td>
-                                </tr>
+                                @foreach ($cities as $city)
+                                    <tr>
+                                        <td scope="row">
+                                            {{ $city->name }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('cities.edit', $city) }}" class="btn btn-sm badge-info">
+                                                <i class="far fa-edit"></i>
+                                                Editar</a>
+                                            <form action="{{ route('cities.destroy', $city) }}" method="post"
+                                                style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm badge-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                    Borrar
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-xl-4">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0">Locales</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">Agregar</a>
-                            </div>
+                        <hr>
+                        <div class="pagination justify-content-center">
+                            {{ $cities->links() }}
                         </div>
-                    </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td scope="row">
-                                        RestoBar
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">
-                                        Pub
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">
-                                        Restaurante Gourmet
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                        
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0">Tipo de comida</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">Agregar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td scope="row">
-                                        China
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">
-                                        Italiana
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">
-                                        Mexicana
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                        
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0">Ambiente</h3>
-                            </div>
-                            <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">Agregar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td scope="row">
-                                        Familiar
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">
-                                        Nocturno
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">
-                                        Romantico
-                                    </td>
-                                    <td>
-                                        <a href="#" class="badge badge-info">Editar</a>
-                                        <a href="#" class="badge badge-danger">Eliminar</a>
-                                        
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

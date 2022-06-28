@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEvaluationRequest;
 use App\Http\Requests\UpdateEvaluationRequest;
 use App\Models\Evaluation;
+use Flasher\Toastr\Prime\ToastrFactory;
+use Illuminate\Support\Facades\Validator;
 
 class EvaluationController extends Controller
 {
@@ -34,9 +36,22 @@ class EvaluationController extends Controller
      * @param  \App\Http\Requests\StoreEvaluationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEvaluationRequest $request)
+    public function store(StoreEvaluationRequest $request, ToastrFactory $flasher)
     {
-        //
+        //dd($request);
+        $validator = Validator::make($request->all(), [
+            'review' => ['required'],
+            'score' => ['required'],
+        ]);
+        $validator->validate();
+        Evaluation::create([
+            'review' => $request->review,
+            'score' => $request->score,
+            'user_id' => $request->user_id,
+            'restaurant_id' => $request->restaurant_id,
+        ]);
+        $flasher->addSuccess('¡El comentario se ha publicado con éxito!');
+        return redirect()->back();
     }
 
     /**
@@ -79,8 +94,10 @@ class EvaluationController extends Controller
      * @param  \App\Models\Evaluation  $evaluation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Evaluation $evaluation)
+    public function destroy(Evaluation $evaluation, ToastrFactory $flasher)
     {
-        //
+        $evaluation->delete();
+        $flasher->addSuccess('¡El comentario se ha eliminado con éxito!');
+        return redirect()->back();
     }
 }

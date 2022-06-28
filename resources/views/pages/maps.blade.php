@@ -53,7 +53,7 @@
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                        <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
+                        <img alt="Image placeholder" src="{{url('img/profile.png')}}">
                         </span>
                     </div>
                 </a>
@@ -109,7 +109,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.index') }}">
+                            <a class="nav-link" href="{{ route('users.index') }}">
                                 {{ __('User Management') }}
                             </a>
                         </li>

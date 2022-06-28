@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'city_id'
+        'city_id',
+        'description'
     ];
 
     /**
@@ -45,11 +46,15 @@ class User extends Authenticatable
 
     public function cities()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, 'city_id');
     }
 
     public function evaluations()
     {
         return $this->hasMany(Evaluation::class);
+    }
+    public function isAdmin()
+    {
+        return $this->id == 7;
     }
 }

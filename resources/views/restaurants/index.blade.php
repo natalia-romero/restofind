@@ -1,164 +1,158 @@
-@extends('layouts.app', ['title' => __('Restaurantes')])
+@extends('layouts.app', ['title' => __('Restaurantes'), 'class' => 'bg-secondary'])
 
 @section('content')
-    
-    <div class="main-content">
-        <!-- Top navbar -->
-     
-        <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-            <div class="container-fluid">
-
-                <div class="header-body">
-                    <!-- Card stats -->
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card card-stats mb-4 mb-xl-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-                                            <span class="h2 font-weight-bold mb-0">350,897</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                                <i class="fas fa-chart-bar"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="mt-3 mb-0 text-muted text-sm">
-                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                        <span class="text-nowrap">Since last month</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card card-stats mb-4 mb-xl-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                                            <span class="h2 font-weight-bold mb-0">2,356</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                                <i class="fas fa-chart-pie"></i>
-                                            </div>
+    <div class="container" style="padding-top: 5em; ">
+        <div class="row">
+            <div class="col-12 order-first col-xl-3 order-xl-last">
+                <div class="card my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted text-uppercase text-center">Filtros</h5>
+                        <hr>
+                        <form method="get" action="{{ route('restaurants.index') }}">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <select class="form-control js-example-disabled-results"
+                                                id="exampleFormControlSelect1" name="establishment">
+                                                <option value="" selected disabled>Tipo de local</option>
+                                                @foreach ($establishments as $establishment)
+                                                    <option value="{{ $establishment->id }}">
+                                                        {{ $establishment->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
-                                    <p class="mt-3 mb-0 text-muted text-sm">
-                                        <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                                        <span class="text-nowrap">Since last week</span>
-                                    </p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card card-stats mb-4 mb-xl-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                                            <span class="h2 font-weight-bold mb-0">924</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                                                <i class="fas fa-users"></i>
-                                            </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <select class="form-control" id="exampleFormControlSelect1" name="food">
+                                                <option value="" selected disabled>Tipo de comida</option>
+                                                @foreach ($foods as $food)
+                                                    <option value="{{ $food->id }}">{{ $food->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
-                                    <p class="mt-3 mb-0 text-muted text-sm">
-                                        <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                        <span class="text-nowrap">Since yesterday</span>
-                                    </p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card card-stats mb-4 mb-xl-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                                            <span class="h2 font-weight-bold mb-0">49,65%</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                                <i class="fas fa-percent"></i>
-                                            </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <select class="form-control" id="exampleFormControlSelect1" name="environment">
+                                                <option value="" selected disabled>Ambiente</option>
+                                                @foreach ($environments as $environment)
+                                                    <option value="{{ $environment->id }}">{{ $environment->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
-                                    <p class="mt-3 mb-0 text-muted text-sm">
-                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                        <span class="text-nowrap">Since last month</span>
-                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <select class="form-control" id="exampleFormControlSelect1" name="price">
+                                                <option value="" selected disabled>Gama de precio</option>
+                                                @foreach ($prices as $price)
+                                                    <option value="{{ $price->id }}">{{ $price->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <select class="form-control" id="exampleFormControlSelect1" name="city">
+                                                <option value="" selected disabled>Ciudad</option>
+                                                @foreach ($cities as $city)
+                                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <select class="form-control" id="exampleFormControlSelect1" name="order">
+                                                <option value="" selected disabled>Ordenar por..</option>
+                                                <option value="1">Calificación más alta</option>
+                                                <option value="2">Calificación más baja</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="d-grid d-flex justify-content-center">
+                                <div class="input-group-append">
+                                    <button class="btn  btn-primary" type="submit">
+                                        Aplicar Filtros
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid mt--7">
-            <div class="row">
-                <div class="col">
-                    <div class="card shadow">
-                        <div class="card-header border-0">
-                            <div class="row align-items-center">
-                                <div class="col-8">
-                                    <h3 class="mb-0">Users</h3>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <a href="" class="btn btn-sm btn-primary">Add user</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Creation Date</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Admin Admin</td>
-                                        <td>
-                                            <a href="mailto:admin@argon.com">admin@argon.com</a>
-                                        </td>
-                                        <td>12/02/2020 11:00</td>
-                                        <td class="text-right">
-                                            <div class="dropdown">
-                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a class="dropdown-item" href="">Edit</a>
-                                                </div>
+            <div class="col-12 col-xl-9">
+                <div class="card border-0 shadow my-5">
+                    <div class="card-body p-5">
+                        <h1 class="my-4">Restaurantes
+                            {{-- <small>Secondary Text</small> --}}
+                        </h1>
+                        <div class="row">
+                            @foreach ($restaurants as $restaurant)
+                                <div class="col-lg-4 col-sm-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="{{ route('restaurants.show', $restaurant) }}"><img class="card-img-top"
+                                                src="{{ $restaurant->img }}" alt=""
+                                                style=" width: 100%; height: 10em; object-fit: cover;"></a>
+                                        <div class="card-body">
+                                            <h4>
+                                                <a
+                                                    href="{{ route('restaurants.show', $restaurant) }}">{{ $restaurant->name }}</a>
+                                            </h4>
+                                            <div class="d-flex justify-content-start">
+                                                @for ($i = 0; $i < round($restaurant->evaluations->avg('score'), 0); $i++)
+                                                    <span class="fa fa-star text-primary"></span>
+                                                @endfor
+                                                @for ($i = round($restaurant->evaluations->avg('score'), 0); $i < 5; $i++)
+                                                    <span class="fa fa-star"></span>
+                                                @endfor
                                             </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                            <p class="card-text py-1">{{ Str::limit($restaurant->description, 50) }}</p>
+                                            <p class="card-text">
+                                                <span class="badge badge-primary">{{ $restaurant->cities->name }}</span>
+                                                <span
+                                                    class="badge badge-success">{{ 'Gama ' . $restaurant->prices->name }}</span>
+                                                <span
+                                                    class="badge badge-info">{{ 'Comida ' . $restaurant->foods->name }}</span>
+                                            </p>
+                                            <a type="button" class="btn btn-outline-primary btn-sm"
+                                                href="{{ route('restaurants.show', $restaurant) }}">
+                                                Ver detalles
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="card-footer py-4">
-                            <nav class="d-flex justify-content-end" aria-label="...">
+                        <!-- /.row -->
 
-                            </nav>
+                    </div>
+                    <div class="card-footer p-5">
+                        <!-- Pagination -->
+                        <div class="pagination justify-content-center">
+                            {{ $restaurants->links() }}
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
 
     </div>
-
 @endsection

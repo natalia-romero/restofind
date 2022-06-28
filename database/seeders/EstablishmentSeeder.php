@@ -34,6 +34,14 @@ class EstablishmentSeeder extends Seeder
                 'id' => 4,
                 'name' => 'Autor'
             ],
+            [
+                'id' => 5,
+                'name' => 'FastFood'
+            ],
+            [
+                'id' => 6,
+                'name' => 'Restaurant'
+            ],
         ],['id'],['name']);
     }
 }

@@ -191,8 +191,8 @@ var Charts = (function() {
 			900: '#212529'
 		},
 		theme: {
-			'default': '#172b4d',
-			'primary': '#5e72e4',
+			'default': '#353535',
+			'primary': '#806abc',
 			'secondary': '#f4f5f7',
 			'info': '#11cdef',
 			'success': '#2dce89',
@@ -777,7 +777,7 @@ var $map = $('#map-default'),
     map,
     lat,
     lng,
-    color = "#5e72e4";
+    color = "#806abc";
 
 function initMap() {
 
