@@ -67,7 +67,7 @@
             <!-- Navigation -->
             <h6 class="navbar-heading text-muted">Opciones</h6>
             <ul class="navbar-nav">
-                @if (Auth::user()->id == 7)
+                @if (Auth::user()->email == 'admin@restofind.com')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home.index') }}">
                             <i class="ni ni-tv-2 text-primary"></i> {{ __('Panel administración') }}
