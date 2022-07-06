@@ -22,7 +22,7 @@ class EvaluationSeeder extends Seeder
                 'review' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet semper tellus, quis euismod ligula. Quisque sit amet metus feugiat, rutrum metus ut, placerat nisi. ',
                 'score' => 2,
                 'restaurant_id' => 1,
-                'user_id' => 7,
+                'user_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
             [
@@ -30,7 +30,7 @@ class EvaluationSeeder extends Seeder
                 'review' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet semper tellus, quis euismod ligula. Quisque sit amet metus feugiat, rutrum metus ut, placerat nisi. ',
                 'score' => 1,
                 'restaurant_id' => 1,
-                'user_id' => 11,
+                'user_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
             [
@@ -46,7 +46,7 @@ class EvaluationSeeder extends Seeder
                 'review' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet semper tellus, quis euismod ligula. Quisque sit amet metus feugiat, rutrum metus ut, placerat nisi. ',
                 'score' => 5,
                 'restaurant_id' => 2,
-                'user_id' => 12,
+                'user_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
             [
@@ -54,7 +54,7 @@ class EvaluationSeeder extends Seeder
                 'review' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet semper tellus, quis euismod ligula. Quisque sit amet metus feugiat, rutrum metus ut, placerat nisi. ',
                 'score' => 3,
                 'restaurant_id' => 3,
-                'user_id' => 11,
+                'user_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
             [
@@ -62,7 +62,7 @@ class EvaluationSeeder extends Seeder
                 'review' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet semper tellus, quis euismod ligula. Quisque sit amet metus feugiat, rutrum metus ut, placerat nisi. ',
                 'score' => 4,
                 'restaurant_id' => 4,
-                'user_id' => 11,
+                'user_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
             [
@@ -70,7 +70,7 @@ class EvaluationSeeder extends Seeder
                 'review' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet semper tellus, quis euismod ligula. Quisque sit amet metus feugiat, rutrum metus ut, placerat nisi. ',
                 'score' => 5,
                 'restaurant_id' => 4,
-                'user_id' => 7,
+                'user_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
             [
@@ -78,7 +78,7 @@ class EvaluationSeeder extends Seeder
                 'review' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet semper tellus, quis euismod ligula. Quisque sit amet metus feugiat, rutrum metus ut, placerat nisi. ',
                 'score' => 5,
                 'restaurant_id' => 5,
-                'user_id' => 11,
+                'user_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
             [
@@ -86,7 +86,7 @@ class EvaluationSeeder extends Seeder
                 'review' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet semper tellus, quis euismod ligula. Quisque sit amet metus feugiat, rutrum metus ut, placerat nisi. ',
                 'score' => 3,
                 'restaurant_id' => 6,
-                'user_id' => 12,
+                'user_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
             [
@@ -94,7 +94,7 @@ class EvaluationSeeder extends Seeder
                 'review' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet semper tellus, quis euismod ligula. Quisque sit amet metus feugiat, rutrum metus ut, placerat nisi. ',
                 'score' => 2,
                 'restaurant_id' => 7,
-                'user_id' => 7,
+                'user_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
             
