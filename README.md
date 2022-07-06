@@ -1,5 +1,5 @@
 ## RestoFind
-This project use Laravel and PostgreSQL
+This project uses Laravel and PostgreSQL
 ## Install RestoFind
 
 
